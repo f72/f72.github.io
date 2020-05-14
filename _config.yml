@@ -1,5 +1,10 @@
 # theme
-theme: jekyll-theme-minimal
+theme               : jekyll-theme-minimal
+
+#other info
+title               : f72
+description         : &c
+
 
 # Where things are
 source              : .
