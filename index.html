@@ -1,69 +1,59 @@
-<!--
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width-device-wodth, initial-scale=1">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans: 400,300,700,800,600' rel='stylesheet' type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Muli: 400,300' rel='stylesheet' type="text/css">
-</head>
--->
 ---
 layout: default
+title: Jekyll Themes
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
-
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
+<div class="gallery">
+	{% for post in paginator.posts %}
+		<div class="item">
+			<a class="item-inner" href="{{ post.url }}">
+				<div class="item-image"><img src="/thumbnails/{{ post.thumbnail }}"></div>
+				<div class="item-name">{{ post.title }}</div>
+			</a>
+		</div>
+	{% endfor %}
 </div>
 
+<!-- Pager -->
 
+<div class="row-fluid">
+  <div class="span12">
+    <div class="pagination">
+      <ul>
+        {% if paginator.previous_page %}
 
+          {% if paginator.previous_page == 1 %}
+            <li><a href="/">Prev</a></li>
+          {% else %}
+            <li><a href="/page{{ paginator.previous_page }}">Prev</a></li>
+          {% endif %}
 
-<!-- this stuff from creativebloq
-{% assign post = site.posts.first %}
-<div class="c-hero" style="background: url({{post.thumbnail_image.large | relative_url}})bottom center / cover no-repeat;">
-   <h1 class="c-hero__title">{{ post.title }}</h1>
-   {{ post.intro | markdownify  }}
-   <a href="{{ post.url }}" class="btn--hero">Read the full Post</a>
+        {% else %}
+          <li><span class="disabled">Prev</span></li>
+        {% endif %}
+
+        {% if paginator.page == 1 %}
+          <li><span class="active">1</span></li>
+        {% else %}
+          <li><a href="/">1</a></li>
+        {% endif %}
+
+        {% for count in (2..paginator.total_pages) %}
+
+          {% if count == paginator.page %}
+            <li><span class="active">{{ count }}</span></li>
+          {% else %}
+            <li><a href="/page{{ count }}">{{ count }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if paginator.next_page %}
+          <li><a href="/page{{ paginator.next_page }}">Next</a></li>
+        {% else %}
+          <li><span class="disabled">Next</span></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
 </div>
 
-<div class="c-feature">
-   {% for page in site.pages %}
-       {% if page.url == '/about.html' %}
-           <img src="{{ page.profile_image.small }}" alt="Profie Picture" class="c-feature__image" />
-           <div class="c-feature__text">
-               <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
-               <p>{{ page.intro }}</p>
-           </div>
-
-       {% endif %}
-   {% endfor %}
-</div>
-<div class="constrain">
-   <h1>The best of the rest</h1>
-   <section class="card-list">
-           {% for post in site.posts offset:1 %}
-           <div class="card">
-                   <img src="{{ post.thumbnail_image.small }}" />
-                   <div class="card-details">
-                   <h3>{{ post.date | date:"%d %b" }} - {{ post.title }}</h3>
-               <a href="{{ post.url }}" class="btn">Read More</a>
-                   </div>
-               </div>
-           {% endfor %}
-
-   </section>
-</div>
--->
