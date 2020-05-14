@@ -1,12 +1,12 @@
-name: Jekyll Themes
-url: http://matt.harzewski.com
-description: Insert tagline here
+name: f72
+url: http://https://f72.github.io
+description: &c
 
 permalink: /themes/:title/
 
 plugins: [jekyll-paginate]
 
-highlighter: pygments
+highlighter: rouge
 paginate: 20
 
 markdown: rdiscount
