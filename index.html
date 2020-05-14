@@ -1,4 +1,5 @@
-<head>
+<!--
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width-device-wodth, initial-scale=1">
@@ -7,9 +8,27 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans: 400,300,700,800,600' rel='stylesheet' type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Muli: 400,300' rel='stylesheet' type="text/css">
 </head>
+-->
+---
+layout: default
+---
+
+<div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
+
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
+
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div>
 
 
-    
 
 
 
@@ -31,4 +50,19 @@
 
        {% endif %}
    {% endfor %}
+</div>
+<div class="constrain">
+   <h1>The best of the rest</h1>
+   <section class="card-list">
+           {% for post in site.posts offset:1 %}
+           <div class="card">
+                   <img src="{{ post.thumbnail_image.small }}" />
+                   <div class="card-details">
+                   <h3>{{ post.date | date:"%d %b" }} - {{ post.title }}</h3>
+               <a href="{{ post.url }}" class="btn">Read More</a>
+                   </div>
+               </div>
+           {% endfor %}
+
+   </section>
 </div>
